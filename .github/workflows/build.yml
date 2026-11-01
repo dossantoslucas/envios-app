@@ -28,6 +28,7 @@ jobs:
         run: |
           tar -xzf app-projeto-completo.tar.gz
           npm install
+          npm run build
           npx cap sync android
 
       - name: Compilar APK Android
