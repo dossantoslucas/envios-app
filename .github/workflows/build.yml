@@ -13,15 +13,22 @@ jobs:
       - name: Baixar Codigo
         uses: actions/checkout@v4
 
+      - name: Configurar Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Configurar Java 17
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Descompactar Projeto Completo
+      - name: Descompactar e Restaurar Dependencias
         run: |
           tar -xzf app-projeto-completo.tar.gz
+          npm install
+          npx cap sync android
 
       - name: Compilar APK Android
         run: |
